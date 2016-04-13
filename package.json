@@ -5,6 +5,10 @@
   "scripts": {
     "compile" : "rimraf dist && tsc",
     "build" : "npm run compile"
+    "pullall" : "dev-env-installer pullall",
+    "buildall" : "dev-env-installer buildall",
+    "testall" : "dev-env-installer testall",
+    "devInstall": "dev-env-installer install"
   },
   "dependencies": {
     "underscore": "^1.8.3"
