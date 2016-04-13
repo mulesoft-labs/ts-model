@@ -3,7 +3,7 @@
   "version": "0.0.7",
   "main": "dist/TSDeclModel.js",
   "scripts": {
-    "compile" : "rimraf dist/ && tsc",
+    "compile" : "rimraf dist && tsc",
     "build" : "npm run compile"
   },
   "dependencies": {
