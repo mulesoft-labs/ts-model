@@ -237,7 +237,7 @@ export class TSModelElement<T extends TSModelElement<any>> implements IModelElem
         this._children.push(child);
     }
 
-    serializeToString():string {
+    serializeToString(isImpl:boolean=false):string {
         throw new Error("You should override serialize to string always");
     }
 
@@ -303,7 +303,7 @@ export class TSInterface extends TSTypeDeclaration {
         return modelName;
     }
 
-    hash(){ return this.children().filter(x=>!x.isPrivate).map( x =>  "\n" + x.serializeToString() + "\n" ).join('') }
+    hash(){ return this.children().filter(x=>!x.isPrivate).map( x =>  "\n" + x.serializeToString(this.isImpl()) + "\n" ).join('') }
 
     toReference():TSTypeReference<any>{return new TSDeclaredInterfaceReference(Universe,this.name,this)}
 
@@ -345,6 +345,10 @@ export class TSInterface extends TSTypeDeclaration {
 
     modelClass():string{
         return MODEL_CLASS_INTERFACE; }
+    
+    protected isImpl():boolean{
+        return false;
+    }
 
 }
 //TODO INCORRECT INHERITANCE CHAIN
@@ -356,6 +360,10 @@ export class TSClassDecl extends TSInterface{
 
     modelClass():string{
         return MODEL_CLASS_CLASS_DECLARATION; }
+
+    protected isImpl():boolean{
+        return true;
+    }
 
 }
 
@@ -842,9 +850,9 @@ export class Param extends TSModelElement<TSTypeReference<any>> {
 
     serializeToString(appendDefault:boolean = false) {
         //return this.name + (this.optional ? "?" : "") + ":" + this.ptype.serializeToString() + (this.ptype.canBeOmmited() ? "?" : "");
-        return this.name + (this.optional || (this.defaultValue && !appendDefault) ? "?" : "")
+        return this.name + (this.optional || ((this.defaultValue != null) && !appendDefault) ? "?" : "")
             + (":" + this.ptype.serializeToString() + (this.ptype.canBeOmmited() ? "?" : ""))
-            + (appendDefault && this.defaultValue ? '='+JSON.stringify(this.defaultValue) : '');
+            + (appendDefault && (this.defaultValue!=null) ? '='+JSON.stringify(this.defaultValue) : '');
     }
 
     modelClass():string{
@@ -948,11 +956,11 @@ export class TSAPIElementDeclaration extends TSMember<TSTypeReference<any>> {
         return '';
     }
 
-    serializeToString() {
+    serializeToString(isImpl:boolean=false) {
         var x = (this.isPrivate ? 'private ' : '')
             + this.escapeDot(this.name)
             + (this.optional ? "?" : "")
-            + (this.isFunction()? this.paramStr() : "")
+            + (this.isFunction()? this.paramStr(isImpl) : "")
             + this.returnStr();
 
         if (this.value){
