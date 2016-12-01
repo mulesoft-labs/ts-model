@@ -911,6 +911,7 @@ export class TSAPIElementDeclaration extends TSMember<TSTypeReference<any>> {
     value:Value=null;
 
     isPrivate:boolean;
+    isStatic:boolean=false;
     isFunc:boolean;
 
     _body:string;
@@ -958,6 +959,7 @@ export class TSAPIElementDeclaration extends TSMember<TSTypeReference<any>> {
 
     serializeToString(isImpl:boolean=false) {
         var x = (this.isPrivate ? 'private ' : '')
+            + (this.isStatic ? 'static ' : '')
             + this.escapeDot(this.name)
             + (this.optional ? "?" : "")
             + (this.isFunction()? this.paramStr(isImpl) : "")
