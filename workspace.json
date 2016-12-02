@@ -4,13 +4,13 @@
     "test" : "gulp test",
     "gitUrl" : "https://github.com/raml-org/raml-js-parser-2.git",
     "installTypings" : true,
-    "gitBranch": "randomInstanceofFix"
+    "gitBranch": "develop"
   },
   "raml-definition-system" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/raml-org/raml-definition-system.git",
     "installTypings" : true,
-    "gitBranch": "randomInstanceofFix"
+    "gitBranch": "develop"
   },
   "raml-typesystem" : {
     "build" : "npm run build",
@@ -32,7 +32,7 @@
   "yaml-ast-parser" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/yaml-ast-parser.git",
-    "gitBranch": "randomInstanceofFix"
+    "gitBranch": "develop"
   },
   "ts-model" : {
     "build" : "npm run build",
