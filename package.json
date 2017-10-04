@@ -1,6 +1,6 @@
 {
   "name": "ts-model",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "main": "dist/TSDeclModel.js",
   "scripts": {
     "compile" : "rimraf dist && tsc",
@@ -30,9 +30,10 @@
     "url": "https://github.com/raml-org/ts-model/issues"
   },
   "devDependencies": {
+    "@types/node": "4.2.20",
+    "@types/underscore": "1.8.3",
     "dev-env-installer":"0.0.5",
-    "typescript": "1.8.7",
-    "typings": "^0.5.1",
+    "typescript": "2.5.2",
     "rimraf":"*"
   }
 }
