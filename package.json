@@ -11,7 +11,7 @@
     "devInstall": "dev-env-installer install"
   },
   "dependencies": {
-    "underscore": "1.8.3"
+    "underscore": "1.9.1"
   },
   "typings": "./dist/TSDeclModel.d.ts",
   "repository": {
@@ -33,7 +33,7 @@
     "@types/node": "4.2.20",
     "@types/underscore": "1.8.3",
     "dev-env-installer": "0.0.14",
-    "typescript": "2.8.4",
+    "typescript": "3.0.1",
     "rimraf":"*"
   }
 }
